@@ -1,30 +1,38 @@
-# Personal Portfolio — Chaitanya P Desai
+# Chaitanya P Desai: Interactive 3D City Portfolio
 
-[![Live site](https://img.shields.io/badge/Live-chaitanya697.github.io%2Fportfolio-0d1117?style=for-the-badge&logo=githubpages&logoColor=00ff9c)](https://chaitanya697.github.io/portfolio/)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+**Live:** https://chaitanya697.github.io/portfolio/
 
-My personal portfolio website, hosted on GitHub Pages: an introduction, areas of expertise, education, and links to my LinkedIn, CodeChef and GitHub.
+My portfolio as a night-time city. Every landmark tower is a chapter: click one and the camera swings over to it on a grapple line.
 
-## Pages
-
-| File | Content |
+| Tower | Section |
 |---|---|
-| `index.html` | Home: intro, about, expertise, education, social links |
-| `about.html` | More about me |
-| `blog.html`, `single.html` | Blog listing and article layout |
-| `services.html`, `contact.html` | Services and contact |
-| `styles.html`, `generic.html` | Style guide and generic page layout |
+| Chaitanya HQ | About me, summary, résumés |
+| The Repository | GitHub & projects |
+| Construction Yard | Current projects |
+| Research Lab | IEEE publication & research |
+| Experience Tower | Internship (ARIEOTECH) |
+| The Academy | Education & certifications |
+| The Arena | Leadership, hackathons, sports |
+| Signal Billboard | Skills |
+| Comms Beacon | Contact, freelance services |
 
-## Run locally
+A text-only **Recruiter view** (top right) has the same content, and it's used automatically when WebGL isn't available or reduced motion is on. The city also keeps a few secrets.
 
-No build step. Open `index.html` in a browser, or serve the folder:
+## Engineering
+
+- **Three.js with custom GLSL, no frameworks.** All the content lives in [`src/data.js`](src/data.js) and feeds both the 3D panels and the recruiter view.
+- **The entire skyline is one instanced draw call.** Window lights are generated in the fragment shader, so there are no textures to download.
+- **Traffic, aviation lights, rain and fireworks run on the GPU,** with zero per-frame CPU work.
+- **No post-processing.** Glow is faked with additive sprites.
+- **Quality adapts to the device.** Phones get a lighter city capped at 30 fps; every device drops to 30 fps while a panel is open; the pixel ratio scales down if frames drop.
+- **Size:** ~170 KB gzipped JavaScript, self-hosted subset fonts.
+
+## Develop
 
 ```bash
-python -m http.server 8000   # then open http://localhost:8000
+npm install
+npm run build     # bundles src/ → assets/app.js
+npm run serve     # http://localhost:8080
 ```
 
-## Credits
-
-Based on the free **Monica** HTML template by [styleshout.com](https://styleshout.com), used under its licence (attribution required). See `readme.txt` for the full template licence.
+Add `?debug` to the URL to expose `window.__city` for testing.

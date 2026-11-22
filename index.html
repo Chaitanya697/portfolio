@@ -1,20 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Chaitanya P Desai · Software Engineer · Cloud & DevOps · AI/ML</title>
-<meta name="description" content="Portfolio of Chaitanya P Desai: final-year B.Tech CSE (IT) at SRM IST, CGPA 9.2. Software engineering, cloud & DevOps on AWS, and AI/ML. IEEE lead author and Flipkart GRiD 8.0 National Semi-Finalist. Explore it as an interactive 3D city.">
-<meta name="theme-color" content="#05070f">
-<meta property="og:title" content="Chaitanya P Desai · Interactive 3D Portfolio">
-<meta property="og:description" content="Software Engineer · Cloud & DevOps · AI/ML. Explore my work as a living 3D city.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chaitanya P Desai · Software Engineer</title>
+<meta name="description" content="Portfolio of Chaitanya P Desai: final-year B.Tech CSE (IT) at SRM IST, CGPA 9.2. Software engineering, cloud & DevOps on AWS, and AI/ML. IEEE lead author and Flipkart GRiD 8.0 National Semi-Finalist.">
+<meta name="theme-color" content="#ffd23f">
+<meta property="og:title" content="Chaitanya P Desai · The Chaitanya Chronicles">
+<meta property="og:description" content="Software Engineer · Cloud & DevOps · AI/ML. My career, told as a comic book.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://chaitanya697.github.io/portfolio/">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/147988385?v=4&s=400">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/InterDisplay-Black.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preconnect" href="https://avatars.githubusercontent.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Chaitanya P Desai","jobTitle":"Software Engineer","email":"mailto:chaitupdesai@gmail.com",
@@ -23,71 +23,151 @@
 </script>
 </head>
 <body>
-<canvas id="scene" aria-label="Interactive 3D city. Each landmark tower is a section of the portfolio. Use the district buttons or the Recruiter view for a text version."></canvas>
+<a class="skip" href="#tldr">Skip to the 30-second summary</a>
 
-<div id="loader" role="status" aria-live="polite">
-  <div class="logo">CPD</div>
-  <div class="bar"><i></i></div>
-  <p class="msg">Booting the city…</p>
-  <p class="tip">Tip: every tower is a chapter of the story.</p>
-</div>
-
-<div id="intro" hidden><div class="card-inner"></div></div>
-
-<header class="hud-top">
-  <button class="brand" id="btnHome" title="Back to the skyline"><b>CPD</b><span>Chaitanya P Desai</span></button>
-  <div class="hud-actions">
-    <div id="shardHud" hidden></div>
-    <button id="btnTourHud" class="hbtn" title="Guided tour">▶ Tour</button>
-    <button id="btnRecruiter" class="hbtn" title="Text-only recruiter view">Recruiter view</button>
-    <button id="btnSound" class="hbtn icon" aria-pressed="false" title="Sound effects">🔈</button>
-    <button id="btnHelp" class="hbtn icon" title="Controls (?)">?</button>
-  </div>
+<header class="strip">
+  <a class="logo" href="#top" aria-label="Back to top"><span>CPD</span></a>
+  <nav id="nav" aria-label="Chapters"></nav>
+  <button class="kbd" id="openPal" title="Quick jump (press /)"><span>Jump</span> <kbd>/</kbd></button>
+  <a class="btn sm red" href="#contact">Hire me</a>
 </header>
 
-<nav id="districts" aria-label="Landmarks"></nav>
-<div id="minimap"></div>
-<div id="hint" hidden><b>Drag</b> to look · <b>Scroll</b> to zoom · <b>Click a tower</b> to swing over</div>
-<div id="tooltip" hidden></div>
-<div id="caption" hidden></div>
-<div id="toasts" aria-live="polite"></div>
+<main id="top">
+  <!-- COVER -->
+  <section class="band" id="cover" data-gear="none">
+    <div class="wrap cover">
+      <div class="rays" aria-hidden="true"></div>
+      <div class="mast">
+        <div class="issue"><span>Issue #1</span><span>Nov 2026</span><span class="open"><i></i>Open to work</span></div>
+        <h1 class="title" id="title">Chaitanya P Desai</h1>
+        <p class="sub">Software Engineer · Cloud &amp; DevOps · AI / ML</p>
+        <p class="blurb" id="summary"></p>
+        <div class="cta">
+          <a class="btn red" href="#work">See my work ↓</a>
+          <a class="btn" href="assets/resume/Chaitanya_P_Desai_SDE_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
+          <a class="btn ghost" href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="hero">
+        <div class="frame">
+          <svg viewBox="0 0 200 200" aria-hidden="true"><rect width="200" height="200" fill="#1f6feb"/><circle cx="100" cy="78" r="38" fill="#ffd9b0" stroke="#141414" stroke-width="4"/><path d="M62 70q4-36 40-36t38 38q-8-16-38-14t-40 12z" fill="#141414"/><circle cx="86" cy="80" r="4" fill="#141414"/><circle cx="114" cy="80" r="4" fill="#141414"/><path d="M88 96q12 9 24 0" stroke="#141414" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M38 200q4-70 62-70t62 70z" fill="#e63946" stroke="#141414" stroke-width="4"/></svg>
+          <img src="https://avatars.githubusercontent.com/u/147988385?v=4&s=460" alt="Portrait of Chaitanya P Desai" width="460" height="460" onerror="this.remove()">
+        </div>
+        <div class="burst b1">CGPA<br>9.2!</div>
+        <div class="burst b2">IEEE lead author!</div>
+      </div>
+    </div>
+  </section>
 
-<aside id="panel" hidden role="dialog" aria-labelledby="panelTitle">
-  <div class="phead">
-    <div><p class="kicker"></p><h2 id="panelTitle" tabindex="-1"></h2></div>
-    <button class="close" aria-label="Close panel">✕</button>
+  <!-- TL;DR -->
+  <section class="band tight" id="tldr" data-gear="none">
+    <div class="wrap">
+      <div class="chap"><span class="no">Recap</span><h2>The 30-second version</h2></div>
+      <div class="facts" id="facts"></div>
+    </div>
+  </section>
+
+  <section class="band" id="experience" data-gear="tie"><div class="wrap">
+    <div class="chap"><span class="no">Ch. 1</span><h2>Experience</h2><p class="lede">Where I've shipped production code.</p></div>
+    <div class="grid" id="xpGrid"></div>
+  </div></section>
+
+  <section class="band" id="work" data-gear="laptop"><div class="wrap">
+    <div class="chap"><span class="no">Ch. 2</span><h2>Projects</h2><p class="lede">Open source on GitHub. Each card opens into the engineering details.</p></div>
+    <div id="featured"></div>
+    <div class="grid" id="projGrid"></div>
+  </div></section>
+
+  <section class="band" id="research" data-gear="goggles"><div class="wrap">
+    <div class="chap"><span class="no">Ch. 3</span><h2>Research</h2><p class="lede">Clustering 31,000+ Indian court judgments, and what came next.</p></div>
+    <div class="grid" id="resGrid"></div>
+  </div></section>
+
+  <section class="band" id="now" data-gear="hat"><div class="wrap">
+    <div class="chap"><span class="no">Ch. 4</span><h2>Currently building</h2><p class="lede">What's on the workbench right now.</p></div>
+    <div class="grid" id="nowGrid"></div>
+  </div></section>
+
+  <section class="band" id="education" data-gear="cap"><div class="wrap">
+    <div class="chap"><span class="no">Ch. 5</span><h2>Education</h2><p class="lede">From Kharghar to Chennai.</p></div>
+    <div class="grid" id="eduGrid"></div>
+  </div></section>
+
+  <section class="band" id="leadership" data-gear="ball"><div class="wrap">
+    <div class="chap"><span class="no">Ch. 6</span><h2>Leadership &amp; beyond</h2><p class="lede">Team-ups, tournaments and time off the keyboard.</p></div>
+    <div class="grid" id="leadGrid"></div>
+  </div></section>
+
+  <section class="band" id="skills" data-gear="bolt"><div class="wrap">
+    <div class="chap"><span class="no">Ch. 7</span><h2>Skills</h2><p class="lede">Powers and abilities, grouped by domain.</p></div>
+    <div class="grid" id="skillGrid"></div>
+  </div></section>
+
+  <section class="band" id="contact" data-gear="sign"><div class="wrap">
+    <div class="chap"><span class="no">Ch. 8</span><h2>Work with me</h2><p class="lede">Roles, internships and freelance projects with a clear scope.</p></div>
+    <div class="grid" id="svcGrid"></div>
+    <div class="finale">
+      <h2>To be continued…</h2>
+      <p>The next chapter needs a mission. Tell me about your role or project.</p>
+      <span class="mail">chaitupdesai@gmail.com</span>
+      <div class="cta center">
+        <a class="btn yel" href="mailto:chaitupdesai@gmail.com?subject=Hello%20Chaitanya" data-hire>Email me ✉</a>
+        <button class="btn" data-copy="chaitupdesai@gmail.com">Copy email</button>
+        <a class="btn" href="https://www.linkedin.com/in/chaitanya-desai-5a9848328" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn" href="https://github.com/Chaitanya697" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+      <div class="cta center" id="resumes"></div>
+    </div>
+  </div></section>
+</main>
+
+<footer class="foot">
+  <p><b>The Chaitanya Chronicles</b> · Issue #1 · Written, drawn and deployed by Chaitanya P Desai</p>
+  <p class="tip">Tip: press <kbd>/</kbd> to jump anywhere. Some things on this page are hidden.</p>
+</footer>
+
+<!-- mascot -->
+<div class="buddy" id="buddy" aria-hidden="true">
+  <div class="say" id="say"></div>
+  <div class="flip" id="flip">
+    <svg class="inky" viewBox="0 0 64 76" id="inky">
+      <g class="cape"><path d="M20 34 Q8 54 12 68 L32 60 L52 68 Q56 54 44 34Z" fill="#e63946" stroke="#141414" stroke-width="2.5" stroke-linejoin="round"/></g>
+      <g class="leg l"><path d="M27 58 L25 72 L20 73" fill="none" stroke="#141414" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+      <g class="leg r"><path d="M37 58 L39 72 L44 73" fill="none" stroke="#141414" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+      <g class="arm l"><path d="M21 44 L12 52" stroke="#141414" stroke-width="4" stroke-linecap="round"/></g>
+      <g class="arm r"><path d="M43 44 L52 52" stroke="#141414" stroke-width="4" stroke-linecap="round"/></g>
+      <ellipse cx="32" cy="48" rx="13" ry="12" fill="#1f6feb" stroke="#141414" stroke-width="2.5"/>
+      <path d="M32 41l2.2 4.6 5 .6-3.7 3.4 1 5-4.5-2.5-4.5 2.5 1-5-3.7-3.4 5-.6z" fill="#ffd23f" stroke="#141414" stroke-width="1.2"/>
+      <circle cx="32" cy="22" r="15" fill="#fffdf6" stroke="#141414" stroke-width="2.5"/>
+      <path d="M17.5 19 Q32 12 46.5 19 L46 26 Q32 22 18 26Z" fill="#141414"/>
+      <g class="eyes"><circle cx="26" cy="21.5" r="3.4" fill="#fff"/><circle cx="38" cy="21.5" r="3.4" fill="#fff"/>
+        <g class="pupils"><circle cx="26" cy="21.5" r="1.6" fill="#141414"/><circle cx="38" cy="21.5" r="1.6" fill="#141414"/></g></g>
+      <path class="mouth" d="M27 30 Q32 34 37 30" fill="none" stroke="#141414" stroke-width="2.2" stroke-linecap="round"/>
+      <!-- outfits -->
+      <g class="gear cap"><path d="M16 11 L32 4 L48 11 L32 18Z" fill="#141414"/><path d="M46 11 L46 18" stroke="#ffd23f" stroke-width="1.8"/><circle cx="46" cy="19" r="1.6" fill="#ffd23f"/></g>
+      <g class="gear hat"><path d="M17 15 Q17 3 32 3 Q47 3 47 15Z" fill="#ffd23f" stroke="#141414" stroke-width="2.2"/><rect x="14" y="14" width="36" height="4" rx="2" fill="#ffd23f" stroke="#141414" stroke-width="2"/></g>
+      <g class="gear goggles"><rect x="20" y="16" width="11" height="9" rx="4" fill="rgba(80,220,255,.55)" stroke="#141414" stroke-width="2"/><rect x="33" y="16" width="11" height="9" rx="4" fill="rgba(80,220,255,.55)" stroke="#141414" stroke-width="2"/></g>
+      <g class="gear tie"><path d="M32 37 L29 40 L32 52 L35 40Z" fill="#e63946" stroke="#141414" stroke-width="1.5"/></g>
+      <g class="gear laptop"><rect x="44" y="47" width="15" height="10" rx="1.5" fill="#d0d7e2" stroke="#141414" stroke-width="2"/><path d="M42 58 H61" stroke="#141414" stroke-width="2.5" stroke-linecap="round"/></g>
+      <g class="gear ball"><circle cx="54" cy="69" r="5.5" fill="#fff" stroke="#141414" stroke-width="2"/><path d="M54 66 l2.5 1.8-1 3h-3l-1-3z" fill="#141414"/></g>
+      <g class="gear bolt"><path d="M53 30 L47 42 H52 L48 53 L58 38 H53 L57 30Z" fill="#ffd23f" stroke="#141414" stroke-width="1.6" stroke-linejoin="round"/></g>
+      <g class="gear sign"><path d="M54 24 V58" stroke="#8a5a2b" stroke-width="2.5"/><rect x="40" y="14" width="24" height="14" fill="#fff" stroke="#141414" stroke-width="2"/><text x="52" y="24.2" font-size="7.5" text-anchor="middle" font-family="Bangers,Impact,sans-serif" fill="#e63946">HIRE!</text></g>
+    </svg>
   </div>
-  <div class="body"></div>
-  <div class="pfoot"><button class="prev">← Prev</button><button class="next">Next tower →</button></div>
-</aside>
-
-<div id="help" hidden role="dialog" aria-label="Controls">
-  <button class="close" aria-label="Close">✕</button>
-  <h3>Controls</h3>
-  <ul>
-    <li><kbd>Drag</kbd> look around · <kbd>Right-drag</kbd> pan · <kbd>Scroll</kbd> zoom</li>
-    <li><kbd>Click</kbd> a tower to swing to it</li>
-    <li><kbd>1</kbd>–<kbd>9</kbd> jump to a landmark · <kbd>←</kbd> <kbd>→</kbd> next / previous</li>
-    <li><kbd>Esc</kbd> close the panel or stop the tour</li>
-  </ul>
-  <p class="secret">This city keeps a few secrets. Curious people find them.</p>
 </div>
 
-<div id="terminal" hidden role="dialog" aria-label="Terminal">
-  <div class="tbar"><span>cpd-os — city mainframe</span><button class="close" aria-label="Close terminal">✕</button></div>
-  <div class="out"></div>
-  <label class="line"><span class="ps">visitor@city:~$</span><input autocomplete="off" spellcheck="false" aria-label="Terminal input"></label>
-</div>
-
-<div id="classic" hidden></div>
-
-<noscript>
-  <div class="noscript">
-    <h1>Chaitanya P Desai</h1>
-    <p>Software Engineer · Cloud &amp; DevOps · AI/ML · Final-year B.Tech CSE (IT), SRM IST, CGPA 9.2/10</p>
-    <p><a href="https://github.com/Chaitanya697">GitHub</a> · <a href="https://www.linkedin.com/in/chaitanya-desai-5a9848328">LinkedIn</a> · <a href="mailto:chaitupdesai@gmail.com">chaitupdesai@gmail.com</a> · <a href="assets/resume/Chaitanya_P_Desai_SDE_Resume.pdf">Résumé (PDF)</a></p>
+<!-- quick jump palette -->
+<div class="pal" id="pal" hidden role="dialog" aria-label="Quick jump">
+  <div class="pal-box">
+    <input id="palIn" placeholder="Jump to a chapter, résumé or action…" autocomplete="off" aria-label="Search">
+    <ul id="palList" role="listbox"></ul>
+    <p class="pal-foot"><kbd>↑</kbd><kbd>↓</kbd> move · <kbd>Enter</kbd> open · <kbd>Esc</kbd> close</p>
   </div>
-</noscript>
-<script type="module" src="assets/app.js"></script>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<noscript><style>.p{opacity:1!important;transform:none!important}</style>
+  <p class="noscript">This page works best with JavaScript. <a href="assets/resume/Chaitanya_P_Desai_SDE_Resume.pdf">Download my résumé (PDF)</a> · <a href="mailto:chaitupdesai@gmail.com">chaitupdesai@gmail.com</a></p></noscript>
+<script src="assets/app.js" defer></script>
 </body>
 </html>

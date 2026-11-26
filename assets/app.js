@@ -195,7 +195,7 @@
     facts: ['Fun fact: CGPA 9.2!', 'He published at IEEE as lead author.', '31,000+ court judgments, clustered!', "Fintel beats a 34% baseline with 53%.", 'National semi-finalist at Flipkart GRiD 8.0.', 'He shipped .NET + React at ARIEOTECH.', 'Psst… press / to jump anywhere.', 'There is a secret code. Think arcade.'],
   };
   let fi = 0, bubbleT;
-  const speak = (t, ms = 2600) => { bubble.textContent = t; bubble.classList.add('on'); clearTimeout(bubbleT); bubbleT = setTimeout(() => bubble.classList.remove('on'), ms); };
+  const speak = (t, ms = 2600) => { bubble.textContent = t; bubble.classList.add('on'); placeBubble(); clearTimeout(bubbleT); bubbleT = setTimeout(() => bubble.classList.remove('on'), ms); };
   const W = () => innerWidth - (innerWidth < 700 ? 52 : 64);
   let x = 24, vx = 0, target = 24, dir = 1, mouseX = null, mouseY = 0, lastMove = performance.now(), busy = false, hidden = false, wanderAt = 0;
 
@@ -222,36 +222,44 @@
   });
   buddy.addEventListener('dblclick', () => { hidden = true; buddy.classList.add('hide'); say('Hero hidden · press H to bring him back'); });
 
-  let last = performance.now();
+  // keep the speech bubble fully on screen and its tail pointing at the hero
+  function placeBubble() {
+    if (!bubble.classList.contains('on')) return;
+    const bw = bubble.offsetWidth, mid = 32;
+    const left = Math.max(8 - x, Math.min(innerWidth - 8 - x - bw, mid - bw / 2));
+    bubble.style.left = left + 'px';
+    bubble.style.setProperty('--tip', Math.max(14, Math.min(bw - 14, mid - left)) + 'px');
+  }
+
+  // always on the move: pick a random spot, walk there, pause briefly, repeat
+  let last = performance.now(), pauseUntil = 0, speed = 160;
+  const pickTarget = () => {
+    let t;
+    do { t = 8 + Math.random() * (W() - 16); } while (Math.abs(t - x) < Math.min(160, W() / 3));
+    target = t; speed = 110 + Math.random() * 130;
+  };
   function tick(now) {
     const dt = Math.min(0.05, (now - last) / 1000); last = now;
     if (!hidden && !reduce) {
-      const idle = now - lastMove > 7000;
-      if (fine && mouseX != null && !idle) {
-        // follow the cursor, stopping a little short of it
-        const goal = Math.max(8, Math.min(W() - 8, mouseX - 32 - 70 * Math.sign(mouseX - 32 - x || 1)));
-        if (Math.abs(goal - x) > 60) target = goal;
-      } else if (now > wanderAt) {
-        target = 8 + Math.random() * (W() - 16); wanderAt = now + 5000 + Math.random() * 6000;
-      }
       target = Math.max(8, Math.min(W() - 8, target));
-      const want = Math.max(-240, Math.min(240, (target - x) * 3));
-      vx += (want - vx) * Math.min(1, dt * 6);
-      if (Math.abs(target - x) < 4) vx *= 0.8;
+      if (Math.abs(target - x) < 6 && now > pauseUntil) {
+        if (!wanderAt) { wanderAt = 1; pauseUntil = now + 300 + Math.random() * 900; }
+        else { wanderAt = 0; pickTarget(); }
+      }
+      const want = Math.max(-speed, Math.min(speed, (target - x) * 3));
+      vx += (want - vx) * Math.min(1, dt * 5);
       x += vx * dt;
       const running = Math.abs(vx) > 18;
       buddy.classList.toggle('run', running);
-      buddy.classList.toggle('idle', !running && idle);
       if (Math.abs(vx) > 8) { const d = vx > 0 ? 1 : -1; if (d !== dir) { dir = d; flip.classList.toggle('left', dir < 0); } }
       buddy.style.transform = `translate3d(${x.toFixed(1)}px,0,0)`;
-      const side = x > innerWidth - 190 ? 'r' : x < 130 ? 'l' : '';
-      if (side !== bubble.dataset.side) { bubble.dataset.side = side; bubble.classList.toggle('r', side === 'r'); bubble.classList.toggle('l', side === 'l'); }
     }
+    placeBubble();
     requestAnimationFrame(tick);
   }
   buddy.style.transform = `translate3d(${x}px,0,0)`;
   requestAnimationFrame(tick);
-  setTimeout(() => speak(fine ? 'Hi! I follow your mouse. Click me!' : 'Hi! Tap me for fun facts!', 3200), 1800);
+  setTimeout(() => speak(fine ? 'Hi! Click me for fun facts!' : 'Hi! Tap me for fun facts!', 3200), 1800);
 
   /* ================= quick-jump palette ================= */
   const items = [
